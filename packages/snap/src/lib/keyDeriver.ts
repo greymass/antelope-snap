@@ -46,11 +46,11 @@ export async function derivePublicKey(coinType?: number, addressIndex = 0) {
  */
 export async function derivePrivateKey(coinType?: number, addressIndex = 0) {
   const keyDeriver = await getKeyDeriver(coinType);
-  const { privateKeyBytes = undefined } = await keyDeriver(addressIndex);
+  const derived = await keyDeriver(addressIndex);
 
-  if (privateKeyBytes === undefined) {
-    return null;
+  if (!derived.privateKeyBytes) {
+    throw new Error('Private key not found');
   }
 
-  return new PrivateKey(AntelopeKeyType.K1, Bytes.from(privateKeyBytes));
+  return new PrivateKey(AntelopeKeyType.K1, Bytes.from(derived.privateKeyBytes));
 }
