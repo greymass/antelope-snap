@@ -49,7 +49,7 @@ export async function derivePublicKey(coinType?: number, addressIndex = 0) {
  * @returns The private key.
  * @throws If the key tree is not initialized.
  */
-export async function derivePrivateKey(coinType?: number, addressIndex = 1) {
+export async function derivePrivateKey(coinType?: number, addressIndex = 0) {
   const keyDeriver = await getKeyDeriver(coinType);
   const { privateKeyBytes = undefined } = await keyDeriver(addressIndex);
 
