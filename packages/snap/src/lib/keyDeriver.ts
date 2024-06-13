@@ -32,13 +32,8 @@ async function getKeyDeriver(coinType: number = 194) {
  * @throws If the key tree is not initialized.
  */
 export async function derivePublicKey(coinType?: number, addressIndex = 0) {
-  const keyDeriver = await getKeyDeriver(coinType);
-  const { compressedPublicKeyBytes } = await keyDeriver(addressIndex);
-
-  return PublicKey.from({
-    type: 'K1',
-    compressed: compressedPublicKeyBytes,
-  });
+  const privateKey = await derivePrivateKey(coinType, addressIndex);
+  return privateKey.toPublic();
 }
 
 /**
