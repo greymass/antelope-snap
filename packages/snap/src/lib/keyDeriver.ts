@@ -1,17 +1,24 @@
 import { getBIP44AddressKeyDeriver } from '@metamask/key-tree';
-import * as Antelope from '@wharfkit/antelope';
-import type { Chain } from 'src/models';
+import { Bytes, KeyType, PrivateKey } from '@wharfkit/antelope';
+
+import { Chains } from '@wharfkit/common';
+
+// export const chain = Chains.EOS;
+export const chain = Chains.Jungle4;
 
 /**
  * Get the key deriver for the given coin type.
  *
- * @param coinType - The SLIP-0044 registered coin type for BIP-0044.
  * @returns The key deriver.
  */
-async function getKeyDeriver(coinType = 194) {
+async function getKeyDeriver() {
+  if (!chain.coinType) {
+    throw new Error('ChainDefinition does not contain coinType value.');
+  }
+
   const networkNode = await snap.request({
     method: 'snap_getBip44Entropy',
-    params: { coinType },
+    params: { coinType: chain.coinType },
   });
 
   return getBIP44AddressKeyDeriver(networkNode);
@@ -20,35 +27,28 @@ async function getKeyDeriver(coinType = 194) {
 /**
  * Derive an Antelope public key from the key tree at the given address index.
  *
- * @param chain - The chain to derive the key for.
  * @param addressIndex - The index of the address to derive.
  * @returns The public key.
  * @throws If the key tree is not initialized.
  */
-export async function derivePublicKey(chain: Chain, addressIndex = 0) {
-  const privateKey = await derivePrivateKey(chain, addressIndex);
-  return privateKey.toPublic();
+export async function derivePublicKey(addressIndex = 0) {
+  return (await derivePrivateKey(addressIndex)).toPublic();
 }
 
 /**
  * Derive an Antelope private key from the key tree at the given address index.
  *
- * @param chain - The chain to derive the key for.
  * @param addressIndex - The index of the address to derive.
  * @returns The private key.
  * @throws If the key tree is not initialized.
  */
-export async function derivePrivateKey(chain: Chain, addressIndex = 0) {
-  const { coinType } = chain;
-  const keyDeriver = await getKeyDeriver(coinType);
+export async function derivePrivateKey(addressIndex = 0) {
+  const keyDeriver = await getKeyDeriver();
   const derived = await keyDeriver(addressIndex);
 
   if (!derived.privateKeyBytes) {
     throw new Error('Private key not found');
   }
 
-  return new Antelope.PrivateKey(
-    Antelope.KeyType.K1,
-    Antelope.Bytes.from(derived.privateKeyBytes),
-  );
+  return new PrivateKey(KeyType.K1, Bytes.from(derived.privateKeyBytes));
 }

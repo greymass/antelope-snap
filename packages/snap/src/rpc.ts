@@ -1,9 +1,10 @@
 import { assert } from '@metamask/snaps-sdk';
-import { getCurrentChain, SupportedChain, supportedChains } from './lib/chains';
+
 import { Session } from '@wharfkit/session';
 import { WalletPluginPrivateKey } from '@wharfkit/wallet-plugin-privatekey';
+
+import { chain, derivePrivateKey, derivePublicKey } from './lib/keyDeriver';
 import { ApiClient } from './api';
-import { derivePrivateKey, derivePublicKey } from './lib/keyDeriver';
 import { StateManager } from './lib/manageState';
 import { makeMockTransaction } from './lib/mockTransfer';
 import {
@@ -12,9 +13,9 @@ import {
   userConfirmedTransaction,
 } from './ui';
 
-export async function connectAccount(chainName: SupportedChain = 'Jungle4') {
-  const chain = supportedChains[chainName];
-  const publicKey = await derivePublicKey(chain);
+export async function connectAccount() {
+  const publicKey = await derivePublicKey();
+  console.log(publicKey);
   const api = new ApiClient(chain.url);
   const account = await api.fetchAccountByKey(publicKey);
   console.log(JSON.stringify(account));
@@ -26,7 +27,6 @@ export async function connectAccount(chainName: SupportedChain = 'Jungle4') {
     const state = new StateManager();
     await state.set({
       account: JSON.stringify(account),
-      currentChain: JSON.stringify(chain),
     });
     return account.name;
   } else {
@@ -38,9 +38,8 @@ export async function connectAccount(chainName: SupportedChain = 'Jungle4') {
 // TODO: will need params
 export async function signTransaction() {
   console.log('signTransaction');
-  const chain = await getCurrentChain();
   const api = new ApiClient(chain.url);
-  const publicKey = await derivePublicKey(chain);
+  const publicKey = await derivePublicKey();
   const account = await api.fetchAccountByKey(publicKey);
 
   assert(account, 'Account not found');
@@ -61,7 +60,7 @@ export async function signTransaction() {
   const confirmed = await userConfirmedTransaction(transferObject);
 
   if (confirmed) {
-    const privateKey = await derivePrivateKey(chain);
+    const privateKey = await derivePrivateKey();
     console.log(privateKey);
     assert(privateKey, 'Private key not found');
     const sessionArgs = {
