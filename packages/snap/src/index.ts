@@ -3,9 +3,8 @@ import {
   MethodNotFoundError,
 } from '@metamask/snaps-sdk';
 
-import { signTransaction, connectAccount, getConnectedAccount } from './rpc';
-
-export * from './rpc-types';
+import { getPublicKey, signTransaction } from './rpc';
+import { AntelopeRequest, AntelopeSignatureRequest } from './types';
 
 /**
  * Handle incoming JSON-RPC requests, sent through `wallet_invokeSnap`.
@@ -18,15 +17,13 @@ export * from './rpc-types';
  * @throws If the request method is not valid for this snap.
  */
 export const onRpcRequest: OnRpcRequestHandler = async ({ request }) => {
+  console.log(request);
   switch (request.method) {
-    case 'eos_connectAccount':
-      return await connectAccount();
+    case 'antelope_getPublicKey':
+      return await getPublicKey(request as AntelopeRequest);
 
-    case 'eos_signTransaction':
-      return await signTransaction();
-
-    case 'eos_getConnectedAccount':
-      return await getConnectedAccount();
+    case 'antelope_signTransaction':
+      return String(await signTransaction(request as AntelopeSignatureRequest));
 
     default:
       // eslint-disable-next-line @typescript-eslint/no-throw-literal

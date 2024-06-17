@@ -2,7 +2,6 @@
   "name": "root",
   "version": "0.1.0",
   "private": true,
-  "type": "module",
   "description": "",
   "homepage": "https://github.com/MetaMask/template-snap-monorepo#readme",
   "bugs": {
@@ -14,6 +13,7 @@
   },
   "license": "(MIT-0 OR Apache-2.0)",
   "author": "",
+  "type": "module",
   "workspaces": [
     "packages/*"
   ],

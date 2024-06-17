@@ -1,17 +1,14 @@
 import { getBIP44AddressKeyDeriver } from '@metamask/key-tree';
-import { Bytes, KeyType, PrivateKey } from '@wharfkit/antelope';
 
-import { Chains } from '@wharfkit/common';
-
-// export const chain = Chains.EOS;
-export const chain = Chains.Jungle4;
+import { Bytes, KeyType, PrivateKey, PublicKey } from '@wharfkit/antelope';
+import { ChainDefinition } from '@wharfkit/common';
 
 /**
  * Get the key deriver for the given coin type.
  *
  * @returns The key deriver.
  */
-async function getKeyDeriver() {
+async function getKeyDeriver(chain: ChainDefinition) {
   if (!chain.coinType) {
     throw new Error('ChainDefinition does not contain coinType value.');
   }
@@ -31,8 +28,11 @@ async function getKeyDeriver() {
  * @returns The public key.
  * @throws If the key tree is not initialized.
  */
-export async function derivePublicKey(addressIndex = 0) {
-  return (await derivePrivateKey(addressIndex)).toPublic();
+export async function derivePublicKey(
+  chain: ChainDefinition,
+  addressIndex = 0,
+): Promise<PublicKey> {
+  return (await derivePrivateKey(chain, addressIndex)).toPublic();
 }
 
 /**
@@ -42,8 +42,11 @@ export async function derivePublicKey(addressIndex = 0) {
  * @returns The private key.
  * @throws If the key tree is not initialized.
  */
-export async function derivePrivateKey(addressIndex = 0) {
-  const keyDeriver = await getKeyDeriver();
+export async function derivePrivateKey(
+  chain: ChainDefinition,
+  addressIndex = 0,
+): Promise<PrivateKey> {
+  const keyDeriver = await getKeyDeriver(chain);
   const derived = await keyDeriver(addressIndex);
 
   if (!derived.privateKeyBytes) {

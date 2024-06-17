@@ -1,90 +1,101 @@
-import { assert } from '@metamask/snaps-sdk';
-
-import { Session } from '@wharfkit/session';
-import { WalletPluginPrivateKey } from '@wharfkit/wallet-plugin-privatekey';
-
-import { chain, derivePrivateKey, derivePublicKey } from './lib/keyDeriver';
-import { ApiClient } from './api';
-import { StateManager } from './lib/manageState';
-import { makeMockTransaction } from './lib/mockTransfer';
+import { panel, heading, row, text } from '@metamask/snaps-sdk';
 import {
-  alertNoAccountFound,
-  userConfirmedAccount,
-  userConfirmedTransaction,
-} from './ui';
+  ABI,
+  APIClient,
+  Checksum256Type,
+  Serializer,
+  Signature,
+  Transaction,
+} from '@wharfkit/antelope';
+import { ChainDefinition, Chains, chainIdsToIndices } from '@wharfkit/common';
 
-export async function connectAccount() {
-  const publicKey = await derivePublicKey();
-  console.log(publicKey);
-  const api = new ApiClient(chain.url);
-  const account = await api.fetchAccountByKey(publicKey);
-  console.log(JSON.stringify(account));
-  console.log(JSON.stringify(chain));
+import { derivePrivateKey, derivePublicKey } from './lib/keyDeriver';
+import { AntelopeRequest, AntelopeSignatureRequest } from './types';
 
-  if (account) {
-    const confirmed = await userConfirmedAccount(account.name);
-    if (!confirmed) return null;
-    const state = new StateManager();
-    await state.set({
-      account: JSON.stringify(account),
+export function chainIdToDefinition(chainId: Checksum256Type): ChainDefinition {
+  const index = chainIdsToIndices.get(String(chainId));
+  if (!index) {
+    throw new Error(`Unsupported chainId: ${chainId}`);
+  }
+  return Chains[index];
+}
+
+export async function getPublicKey(request: AntelopeRequest): Promise<string> {
+  if (!request.params?.chainId) {
+    throw new Error('Missing chainId in request params');
+  }
+  const chain = chainIdToDefinition(request.params.chainId);
+
+  return String(await derivePublicKey(chain));
+}
+
+export async function signTransaction(
+  request: AntelopeSignatureRequest,
+): Promise<Signature | undefined> {
+  // Process incoming transaction
+  if (!request.params?.transaction) {
+    throw new Error('Missing transaction in request params');
+  }
+  const transaction = Transaction.from(JSON.parse(request.params.transaction));
+
+  // Load the appropriate chain definition
+  if (!request.params?.chainId) {
+    throw new Error('Missing chainId in request params');
+  }
+  const chain = chainIdToDefinition(request.params.chainId);
+
+  // Determine the unique contracts used in this transaction
+  const contracts = Array.from(
+    new Set(transaction.actions.map((action) => String(action.account))),
+  );
+
+  // Establish APIClient instance based on chain
+  const client = new APIClient({ url: chain.url });
+
+  // Load all ABIs required to decode actions
+  const abis: Record<string, ABI> = {};
+  for (const contract of contracts) {
+    const result = await client.v1.chain.get_abi(contract);
+    if (!result.account_name || !result.abi) {
+      throw new Error('Failed to load ABI');
+    }
+    abis[result.account_name] = ABI.from(result.abi);
+  }
+
+  // Decode each action in the transaction and add to details
+  const details = transaction.actions.map((action, index) => {
+    const abi = abis[String(action.account)];
+    if (!abi) {
+      throw new Error('Missing ABI for contract');
+    }
+    const decoded = Serializer.decode({
+      abi,
+      type: String(action.name),
+      data: action.data,
     });
-    return account.name;
-  } else {
-    await alertNoAccountFound(publicKey.toString());
-    return null;
-  }
-}
+    const rows = Object.entries(decoded).map(([key, value]) =>
+      row(key, text(String(value))),
+    );
+    const header = heading(
+      `Action ${index + 1}: ${String(action.account)}::${String(action.name)}`,
+    );
+    return panel([header, panel(rows)]);
+  });
 
-// TODO: will need params
-export async function signTransaction() {
-  console.log('signTransaction');
-  const api = new ApiClient(chain.url);
-  const publicKey = await derivePublicKey();
-  const account = await api.fetchAccountByKey(publicKey);
+  // Request user confirmation of transaction details
+  const confirmed = await snap.request({
+    method: 'snap_dialog',
+    params: {
+      type: 'confirmation',
+      content: panel([heading('Transaction details'), ...details]),
+    },
+  });
 
-  assert(account, 'Account not found');
-
-  // Will be replaced with actual transaction data from params
-  const memo = 'test';
-  const transferObject = {
-    from: account.name,
-    to: 'teamgreymass',
-    quantity: '0.1337 EOS',
-    memo: memo || 'wharfkit is the best <3',
-  };
-
-  const header = await api.getTransactionHeader();
-  const transaction = makeMockTransaction(account, header, transferObject); // TODO: will need params
-  console.log(JSON.stringify(transaction));
-
-  const confirmed = await userConfirmedTransaction(transferObject);
-
+  // If confirmed, sign the transaction
   if (confirmed) {
-    const privateKey = await derivePrivateKey();
-    console.log(privateKey);
-    assert(privateKey, 'Private key not found');
-    const sessionArgs = {
-      chain: {
-        id: chain.id,
-        url: chain.url,
-      },
-      actor: account.name,
-      permission: account.permission,
-      walletPlugin: new WalletPluginPrivateKey(privateKey),
-    };
-    console.log(sessionArgs);
-    const session = new Session(sessionArgs);
-    console.log(JSON.stringify(session));
-    const result = await session.transact(transaction);
-    console.log(JSON.stringify(result));
-    return String(result);
+    const privateKey = await derivePrivateKey(chain);
+    return privateKey.signDigest(transaction.signingDigest(chain.id));
   }
-  return null;
-}
 
-export async function getConnectedAccount() {
-  const state = new StateManager();
-  const account = (await state.getValue('account')) as string;
-  if (!account) return null;
-  return account;
+  return undefined;
 }

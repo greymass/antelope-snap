@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { connectAccount } from '$lib/rpc-methods';
+	import { getPublicKey } from '$lib/rpc-methods';
+	import { onMount } from 'svelte';
 
 	let account = { name: '', publicKey: '' };
 
@@ -24,9 +25,13 @@
 
 		if (typeof name !== 'undefined') {
 			console.log(`Account ${name} created`);
-			connectAccount();
 		}
 	}
+
+	onMount(async () => {
+		const publicKey = await getPublicKey();
+		account.publicKey = publicKey;
+	});
 
 	async function createAccount(accountData: AccountData, chainUrl: string) {
 		const data = {
@@ -66,8 +71,8 @@
 		<input type="text" id="account" name="account" bind:value={account.name} />
 	</div>
 	<div>
-		<label for="account">PublicKey:</label>
-		<input type="text" id="account" name="publicKey" bind:value={account.publicKey} />
+		<label for="account">PublicKey from Metamask:</label>
+		<input readonly type="text" id="account" name="publicKey" bind:value={account.publicKey} />
 	</div>
 	<button type="submit">Submit</button>
 </form>

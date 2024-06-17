@@ -1729,9 +1729,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@greymass/eos-snap@workspace:packages/snap":
+"@greymass/test-snap@workspace:packages/snap":
   version: 0.0.0-use.local
-  resolution: "@greymass/eos-snap@workspace:packages/snap"
+  resolution: "@greymass/test-snap@workspace:packages/snap"
   dependencies:
     "@jest/globals": ^29.5.0
     "@metamask/auto-changelog": ^3.4.4
@@ -1747,8 +1747,6 @@ __metadata:
     "@typescript-eslint/parser": ^5.42.1
     "@wharfkit/antelope": ^1.0.7
     "@wharfkit/common": ^1.2.2
-    "@wharfkit/session": ^1.3.1
-    "@wharfkit/wallet-plugin-privatekey": ^1.1.0
     buffer: ^6.0.3
     eslint: ^8.45.0
     eslint-config-prettier: ^8.5.0
@@ -4132,9 +4130,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@wharfkit/session@npm:^1.3.1":
-  version: 1.3.1
-  resolution: "@wharfkit/session@npm:1.3.1"
+"@wharfkit/session@npm:next":
+  version: 1.4.0-rc3
+  resolution: "@wharfkit/session@npm:1.4.0-rc3"
   dependencies:
     "@wharfkit/abicache": ^1.2.1
     "@wharfkit/account": ^1.0.0
@@ -4143,7 +4141,7 @@ __metadata:
     "@wharfkit/signing-request": ^3.1.0
     pako: ^2.0.4
     tslib: ^2.1.0
-  checksum: 18df1af3d743f55d64d1af4b5c22361df66e4531273606accfd41dbae6c76648ab77cf2256a2ef802202485bacd288e662938c4f2bbd133732a03fcce9569c49
+  checksum: b7372ea56a13f07d03bdc8707108227c52aa67e7548d62bc0cf9eb01b4510cac7d9ecca1b0c188956b0efd5dc6e3d5b5641c9a99d63b08d743bd8bf32fca309d
   languageName: node
   linkType: hard
 
@@ -4169,14 +4167,35 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@wharfkit/wallet-plugin-privatekey@npm:^1.1.0":
-  version: 1.1.0
-  resolution: "@wharfkit/wallet-plugin-privatekey@npm:1.1.0"
+"@wharfkit/transact-plugin-resource-provider@npm:^1.1.1":
+  version: 1.1.1
+  resolution: "@wharfkit/transact-plugin-resource-provider@npm:1.1.1"
   dependencies:
     tslib: ^2.1.0
   peerDependencies:
     "@wharfkit/session": ^1.1.0
-  checksum: cfdbb286dfbb160428b9333d557522feca09cc026844a419ce1975a17302c7256df63fcaa80a245ce37e2ae02c678310e2cbfbece5b4ab31f4a24603ae65b7eb
+  checksum: 30132579931e8743deca277170373c15a476de2d7560f981747504cf77908f24bd9bf839fcaa5e4d2a63509ce536193662d9478ad7b7dee095ea600383f59d6f
+  languageName: node
+  linkType: hard
+
+"@wharfkit/wallet-plugin-metamask@npm:next":
+  version: 1.0.0-rc3
+  resolution: "@wharfkit/wallet-plugin-metamask@npm:1.0.0-rc3"
+  dependencies:
+    "@metamask/providers": ^17.0.0
+    tslib: ^2.1.0
+  peerDependencies:
+    "@wharfkit/session": ^1.1.0
+  checksum: 21196847c16d05e469a01a3e2cd8951a6c2da749d269c70676a11dd5b1ce10aa108f8672fa18769193e8b05b3f85ffc33fd864430d8c52fb4df439c4afbcd47c
+  languageName: node
+  linkType: hard
+
+"@wharfkit/web-renderer@npm:next":
+  version: 1.4.0-rc4
+  resolution: "@wharfkit/web-renderer@npm:1.4.0-rc4"
+  peerDependencies:
+    "@wharfkit/session": ^1.0.1
+  checksum: a52e06cfa83045e5a7941f7e081d51a12f666c4d13af324d107160e9f2d2fff0222d2e2d3ece300a0a832a6ef6d66469fe0d663ade40125a12ed0e9797bb8a7b
   languageName: node
   linkType: hard
 
@@ -11198,6 +11217,10 @@ __metadata:
     "@sveltejs/kit": ^2.0.0
     "@sveltejs/vite-plugin-svelte": ^3.0.0
     "@types/eslint": ^8.56.7
+    "@wharfkit/session": next
+    "@wharfkit/transact-plugin-resource-provider": ^1.1.1
+    "@wharfkit/wallet-plugin-metamask": next
+    "@wharfkit/web-renderer": next
     eslint: ^9.0.0
     eslint-config-prettier: ^9.1.0
     eslint-plugin-svelte: ^2.36.0
