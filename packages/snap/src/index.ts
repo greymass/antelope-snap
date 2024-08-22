@@ -1,10 +1,37 @@
 import {
   type OnRpcRequestHandler,
+  type OnInstallHandler,
   MethodNotFoundError,
+  text,
+  panel,
 } from '@metamask/snaps-sdk';
 
 import { getPublicKey, signTransaction } from './rpc';
 import { AntelopeRequest, AntelopeSignatureRequest } from './types';
+
+const SNAP_NAME = 'Antelope MetaMask';
+const HELP_URL = 'https://unicove.com/eos/metamask';
+
+/**
+ * Handle the installation of the snap.
+ *
+ * @returns A confirmation message to the user.
+ */
+export const onInstall: OnInstallHandler = async () => {
+  console.log('onINSTALL');
+  await snap.request({
+    method: 'snap_dialog',
+    params: {
+      type: 'alert',
+      content: panel([
+        text(`Welcome to the ${SNAP_NAME} Snap!`),
+        text(
+          `For help setting up an account, please visit our [MetaMask setup page](${HELP_URL}).`,
+        ),
+      ]),
+    },
+  });
+};
 
 /**
  * Handle incoming JSON-RPC requests, sent through `wallet_invokeSnap`.

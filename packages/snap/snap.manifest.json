@@ -7,7 +7,7 @@
     "url": "https://github.com/@greymass/antelope-snap.git"
   },
   "source": {
-    "shasum": "ZRXhKVwCKT0RTuBwE7IcYbge2YkMkQ5ogyteqFnmuwc=",
+    "shasum": "S3lSL22yC9SssAHUsf+6Evsbpd/kufVgjBPlFHm5Vps=",
     "location": {
       "npm": {
         "filePath": "dist/bundle.js",
@@ -20,6 +20,7 @@
   "initialPermissions": {
     "snap_dialog": {},
     "endowment:network-access": {},
+    "endowment:lifecycle-hooks": {},
     "endowment:rpc": {
       "dapps": true,
       "snaps": false
