@@ -29,6 +29,8 @@ export async function getPublicKey(request: AntelopeRequest): Promise<string> {
   return String(await derivePublicKey(chain));
 }
 
+const MAX_TRANSACTION_LENGTH = 100_000;
+
 export async function signTransaction(
   request: AntelopeSignatureRequest,
 ): Promise<Signature | undefined> {
@@ -36,7 +38,27 @@ export async function signTransaction(
   if (!request.params?.transaction) {
     throw new Error('Missing transaction in request params');
   }
-  const transaction = Transaction.from(JSON.parse(request.params.transaction));
+
+  // Check the length of the transaction string
+  if (request.params.transaction.length > MAX_TRANSACTION_LENGTH) {
+    throw new Error('Transaction data is too large');
+  }
+
+  let transactionData;
+  try {
+    // Attempt to parse the transaction data
+    transactionData = JSON.parse(request.params.transaction);
+  } catch (error) {
+    throw new Error(`Invalid JSON transaction data: ${(error as Error).stack}`);
+  }
+
+  let transaction;
+  try {
+    // Attempt to create a Transaction object from the parsed data
+    transaction = Transaction.from(transactionData);
+  } catch (error) {
+    throw new Error(`Invalid transaction format: ${(error as Error).stack}`);
+  }
 
   // Load the appropriate chain definition
   if (!request.params?.chainId) {
