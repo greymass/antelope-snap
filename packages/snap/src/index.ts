@@ -7,10 +7,10 @@ import {
 } from '@metamask/snaps-sdk';
 
 import { getPublicKey, signTransaction } from './rpc';
-import { AntelopeRequest, AntelopeSignatureRequest } from './types';
+import type { AntelopeRequest, AntelopeSignatureRequest } from './types';
 
 const SNAP_NAME = 'EOS Wallet';
-const HELP_URL = 'https://unicove.com/eos/metamask';
+const HELP_URL = 'https://unicove.com/eos/signup/wallets/extensions/metamask';
 
 /**
  * Handle the installation of the snap.
