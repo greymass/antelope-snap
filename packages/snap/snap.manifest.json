@@ -1,10 +1,10 @@
 {
   "version": "1.0.0",
-  "description": "MetaMask Snap allowing users to interact with Antelope networks",
-  "proposedName": "Antelope",
+  "description": "Use MetaMask with the EOS Network",
+  "proposedName": "EOS Wallet",
   "repository": {
     "type": "git",
-    "url": "https://github.com/@greymass/antelope-snap.git"
+    "url": "https://github.com/greymass/antelope-snap/tree/eos"
   },
   "source": {
     "shasum": "N31cL5DFiNXFeN9cGDj5iPje/60K5mgHiqXkhng8rxo=",
@@ -12,7 +12,7 @@
       "npm": {
         "filePath": "dist/bundle.js",
         "iconPath": "src/assets/eos-logo.svg",
-        "packageName": "snap",
+        "packageName": "@greymass/eos-wallet",
         "registry": "https://registry.npmjs.org/"
       }
     }
