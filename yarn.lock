@@ -1729,9 +1729,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@greymass/antelope-snap@workspace:.":
+"@greymass/create-account@npm:^1.0.2":
+  version: 1.0.2
+  resolution: "@greymass/create-account@npm:1.0.2"
+  dependencies:
+    "@greymass/return-path": ^0.0.1
+    "@wharfkit/antelope": ^0.7.3
+    "@wharfkit/signing-request": ^3.0.0
+    tslib: ^2.1.0
+  checksum: aad3d0feb158f77bc386dab689c167dfd3ae73259734a6affd8b826aab2c26680f6067c89bee3d3f5ea763ed48998980b41d49ddf8f1e6cf92f146c92df5e32f
+  languageName: node
+  linkType: hard
+
+"@greymass/eos-wallet@workspace:.":
   version: 0.0.0-use.local
-  resolution: "@greymass/antelope-snap@workspace:."
+  resolution: "@greymass/eos-wallet@workspace:."
   dependencies:
     "@lavamoat/allow-scripts": ^3.0.0
     "@lavamoat/preinstall-always-fail": ^2.0.0
@@ -1757,18 +1769,6 @@ __metadata:
     typescript-eslint: ^8.0.0-alpha.20
   languageName: unknown
   linkType: soft
-
-"@greymass/create-account@npm:^1.0.2":
-  version: 1.0.2
-  resolution: "@greymass/create-account@npm:1.0.2"
-  dependencies:
-    "@greymass/return-path": ^0.0.1
-    "@wharfkit/antelope": ^0.7.3
-    "@wharfkit/signing-request": ^3.0.0
-    tslib: ^2.1.0
-  checksum: aad3d0feb158f77bc386dab689c167dfd3ae73259734a6affd8b826aab2c26680f6067c89bee3d3f5ea763ed48998980b41d49ddf8f1e6cf92f146c92df5e32f
-  languageName: node
-  linkType: hard
 
 "@greymass/return-path@npm:^0.0.1":
   version: 0.0.1
