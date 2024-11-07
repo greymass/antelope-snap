@@ -4,10 +4,10 @@
   "proposedName": "EOS Wallet",
   "repository": {
     "type": "git",
-    "url": "https://github.com/greymass/antelope-snap/tree/eos"
+    "url": "https://github.com/@greymass/antelope-snap.git"
   },
   "source": {
-    "shasum": "N31cL5DFiNXFeN9cGDj5iPje/60K5mgHiqXkhng8rxo=",
+    "shasum": "qrb7Oxl5Q0mqCgXm5wmZ6CIiAuM4S3c1cblLv4vTCys=",
     "location": {
       "npm": {
         "filePath": "dist/bundle.js",

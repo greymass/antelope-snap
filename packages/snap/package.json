@@ -1,7 +1,7 @@
 {
-  "name": "snap",
+  "name": "@greymass/eos-wallet",
   "version": "1.0.0",
-  "description": "MetaMask Snap allowing users to interact with Antelope networks",
+  "description": "Use MetaMask with the EOS Network",
   "repository": {
     "type": "git",
     "url": "https://github.com/@greymass/antelope-snap.git"

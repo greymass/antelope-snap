@@ -1,14 +1,15 @@
 {
-  "name": "@greymass/eos-wallet",
+  "name": "root",
   "version": "1.0.0",
+  "private": true,
   "description": "",
-  "homepage": "https://github.com/greymass/antelope-snap/tree/eos",
+  "homepage": "https://github.com/greymass/antelope-snap",
   "bugs": {
-    "url": "https://github.com/greymass/antelope-snap/tree/eos"
+    "url": "https://github.com/greymass/antelope-snap"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/@greymass/antelope-snap.git"
+    "url": "https://github.com/@greymass/antelope-snap.git"
   },
   "license": "MIT",
   "author": "Greymass Inc.",
