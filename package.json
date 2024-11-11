@@ -2,14 +2,14 @@
   "name": "root",
   "version": "1.0.0",
   "private": true,
-  "description": "",
+  "description": "Template for deploying Antelope-based snaps. See branches for specific networks.",
   "homepage": "https://github.com/greymass/antelope-snap",
   "bugs": {
     "url": "https://github.com/greymass/antelope-snap"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/@greymass/antelope-snap.git"
+    "url": "git+https://github.com/greymass/antelope-snap.git"
   },
   "license": "MIT",
   "author": "Greymass Inc.",
@@ -23,8 +23,10 @@
     "lint:eslint": "eslint . --cache -c js,jsx,ts,tsx",
     "lint:fix": "yarn lint:misc --write",
     "lint:misc": "prettier '**/*.json' '**/*.md' '!**/CHANGELOG.md' '**/*.yml' --ignore-path .gitignore",
+    "publish:snap": "yarn workspace @greymass/eos-wallet npm publish --access public",
+    "publish:snap:next": "yarn workspace @greymass/eos-wallet npm publish --access public --tag next",
     "start": "yarn workspaces foreach --parallel --interlaced --verbose run start",
-    "test": "yarn workspace snap run test --passWithNoTests"
+    "test": "yarn workspace @greymass/eos-wallet run test --passWithNoTests"
   },
   "devDependencies": {
     "@lavamoat/allow-scripts": "^3.0.0",
