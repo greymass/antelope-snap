@@ -11,6 +11,29 @@ const config: SnapConfig = {
     crypto: true,
     buffer: true,
   },
+  customizeWebpackConfig: (config) => {
+    return {
+      ...config,
+      module: {
+        ...config.module,
+        rules: [
+          ...(config.module?.rules || []),
+          {
+            test: /\.svg$/,
+            use: [
+              {
+                loader: 'url-loader',
+                options: {
+                  limit: 10000,
+                  name: 'images/[hash]-[name].[ext]',
+                },
+              },
+            ],
+          },
+        ],
+      },
+    };
+  },
 };
 
 export default config;

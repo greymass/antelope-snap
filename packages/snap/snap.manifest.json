@@ -1,5 +1,5 @@
 {
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Use MetaMask with the EOS Network",
   "proposedName": "EOS Wallet",
   "repository": {
@@ -7,7 +7,7 @@
     "url": "https://github.com/@greymass/antelope-snap.git"
   },
   "source": {
-    "shasum": "6cU0LH55K0NGtqTx30QzZfFJeMRMICsn5HTuc5tAhzw=",
+    "shasum": "4w6WYeK6M72k5BF+BAOVaAyyL5E4pwvAMT+JdmER8b4=",
     "location": {
       "npm": {
         "filePath": "dist/bundle.js",
