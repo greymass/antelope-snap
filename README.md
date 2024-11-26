@@ -1,5 +1,3 @@
-# WARNING: This Metamask Snap has not been audited yet and should not be used with real funds.
-
 # @greymass/antelope-snap
 
 This is a Metamask Snap that provides a simple way to interface with [Antelope](https://eosnetwork.com/antelope/) blockchains using a Metamask wallet.
