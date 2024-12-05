@@ -23,10 +23,10 @@
     "lint:eslint": "eslint . --cache -c js,jsx,ts,tsx",
     "lint:fix": "yarn lint:misc --write",
     "lint:misc": "prettier '**/*.json' '**/*.md' '!**/CHANGELOG.md' '**/*.yml' --ignore-path .gitignore",
-    "publish:snap": "yarn workspace snap npm publish --access public",
-    "publish:snap:next": "yarn workspace snap npm publish --access public --tag next",
+    "publish:snap": "yarn workspace @greymass/eos-wallet npm publish --access public",
+    "publish:snap:next": "yarn workspace @greymass/eos-wallet npm publish --access public --tag next",
     "start": "yarn workspaces foreach --parallel --interlaced --verbose run start",
-    "test": "yarn workspace snap run test --passWithNoTests"
+    "test": "yarn workspace @greymass/eos-wallet run test --passWithNoTests"
   },
   "devDependencies": {
     "@lavamoat/allow-scripts": "^3.0.0",

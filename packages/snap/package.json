@@ -1,7 +1,7 @@
 {
-  "name": "snap",
-  "version": "1.0.1",
-  "description": "MetaMask Snap allowing users to interact with Antelope networks",
+  "name": "@greymass/eos-wallet",
+  "version": "1.1.0",
+  "description": "Use MetaMask with the EOS Network",
   "repository": {
     "type": "git",
     "url": "https://github.com/@greymass/antelope-snap.git"
@@ -10,7 +10,8 @@
   "main": "./dist/bundle.js",
   "files": [
     "dist/",
-    "snap.manifest.json"
+    "snap.manifest.json",
+    "src/assets/eos-logo.svg"
   ],
   "scripts": {
     "allow-scripts": "yarn workspace root allow-scripts",
