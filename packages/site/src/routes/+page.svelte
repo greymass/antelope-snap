@@ -11,6 +11,7 @@
 	import { TransactPluginResourceProvider } from '@wharfkit/transact-plugin-resource-provider';
 	import { WalletPluginMetaMask } from '@wharfkit/wallet-plugin-metamask';
 	import { AccountCreationPluginMetamask } from '@wharfkit/account-creation-plugin-metamask';
+	import { defaultSnapOrigin } from '../config/snap';
 
 	let provider: MetaMaskInpageProvider;
 	const session: Writable<Session | undefined> = writable();
@@ -26,7 +27,11 @@
 		},
 		{
 			transactPlugins: [new TransactPluginResourceProvider()],
-			accountCreationPlugins: [new AccountCreationPluginMetamask()]
+			accountCreationPlugins: [
+				new AccountCreationPluginMetamask({
+					snapOrigin: defaultSnapOrigin
+				})
+			]
 		}
 	);
 

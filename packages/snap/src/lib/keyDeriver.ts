@@ -22,36 +22,81 @@ async function getKeyDeriver(chain: ChainDefinition) {
 }
 
 /**
- * Derive an Antelope public key from the key tree at the given address index.
- *
- * @param addressIndex - The index of the address to derive.
- * @returns The public key.
- * @throws If the key tree is not initialized.
- */
-export async function derivePublicKey(
-  chain: ChainDefinition,
-  addressIndex = 0,
-): Promise<PublicKey> {
-  return (await derivePrivateKey(chain, addressIndex)).toPublic();
-}
-
-/**
  * Derive an Antelope private key from the key tree at the given address index.
  *
- * @param addressIndex - The index of the address to derive.
+ * @param keyIndex - The index of the key to derive.
  * @returns The private key.
  * @throws If the key tree is not initialized.
  */
-export async function derivePrivateKey(
+async function derivePrivateKey(
   chain: ChainDefinition,
-  addressIndex = 0,
+  keyIndex = 1, // default to first active key
 ): Promise<PrivateKey> {
   const keyDeriver = await getKeyDeriver(chain);
-  const derived = await keyDeriver(addressIndex);
+  const derived = await keyDeriver(keyIndex);
 
   if (!derived.privateKeyBytes) {
     throw new Error('Private key not found');
   }
 
   return new PrivateKey(KeyType.K1, Bytes.from(derived.privateKeyBytes));
+}
+
+/**
+ * Derive an Antelope owner public key from the key tree.
+ * Always uses index 0 which is reserved for owner permissions.
+ *
+ * @returns The owner public key.
+ * @throws If the key tree is not initialized.
+ */
+export async function deriveOwnerPublicKey(
+  chain: ChainDefinition,
+): Promise<PublicKey> {
+  return (await deriveOwnerPrivateKey(chain)).toPublic();
+}
+
+/**
+ * Derive an Antelope active public key from the key tree.
+ * Cannot use index 0 which is reserved for owner permissions.
+ *
+ * @param keyIndex - The index of the address to derive (must not be 0).
+ * @returns The active public key.
+ * @throws If the key tree is not initialized or if index 0 is used.
+ */
+export async function deriveActivePublicKey(
+  chain: ChainDefinition,
+  keyIndex = 1,
+): Promise<PublicKey> {
+  return (await deriveActivePrivateKey(chain, keyIndex)).toPublic();
+}
+
+/**
+ * Derive an Antelope owner private key from the key tree.
+ * Always uses index 0 which is reserved for owner permissions.
+ *
+ * @returns The owner private key.
+ * @throws If the key tree is not initialized.
+ */
+export async function deriveOwnerPrivateKey(
+  chain: ChainDefinition,
+): Promise<PrivateKey> {
+  return derivePrivateKey(chain, 0);
+}
+
+/**
+ * Derive an Antelope active private key from the key tree.
+ * Cannot use index 0 which is reserved for owner permissions.
+ *
+ * @param keyIndex - The index of the address to derive (must not be 0).
+ * @returns The active private key.
+ * @throws If the key tree is not initialized or if index 0 is used.
+ */
+export async function deriveActivePrivateKey(
+  chain: ChainDefinition,
+  keyIndex = 1,
+): Promise<PrivateKey> {
+  if (Number(keyIndex) > 0) {
+    return derivePrivateKey(chain, Number(keyIndex));
+  }
+  throw new Error('Invalid key index');
 }
