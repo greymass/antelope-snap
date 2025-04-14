@@ -13,8 +13,8 @@ import type {
   AntelopeGetActivePublicKeyRequest,
 } from './types';
 
-const SNAP_NAME = 'EOS Wallet';
-const HELP_URL = 'https://unicove.com/eos/signup/wallets/extensions/metamask';
+const SNAP_NAME = 'Vaulta Wallet';
+const HELP_URL = 'https://unicove.com/metamask';
 
 /**
  * Handle the installation of the snap.

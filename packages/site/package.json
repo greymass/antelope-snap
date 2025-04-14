@@ -15,11 +15,11 @@
 	},
 	"dependencies": {
 		"@metamask/providers": "^17.0.0",
-		"@wharfkit/account-creation-plugin-metamask": "next",
-		"@wharfkit/session": "next",
+		"@wharfkit/account-creation-plugin-metamask": "^1.2.1",
+		"@wharfkit/session": "^1.5.1",
 		"@wharfkit/transact-plugin-resource-provider": "^1.1.1",
-		"@wharfkit/wallet-plugin-metamask": "next",
-		"@wharfkit/web-renderer": "next"
+		"@wharfkit/wallet-plugin-metamask": "^1.1.1",
+		"@wharfkit/web-renderer": "^1.4.1"
 	},
 	"devDependencies": {
 		"@eslint/eslintrc": "^3.1.0",

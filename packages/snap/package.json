@@ -1,7 +1,7 @@
 {
-  "name": "@greymass/eos-wallet",
+  "name": "@greymass/vaulta-wallet",
   "version": "1.1.0",
-  "description": "Use MetaMask with the EOS Network",
+  "description": "Use MetaMask with the Vaulta Network",
   "repository": {
     "type": "git",
     "url": "https://github.com/@greymass/antelope-snap.git"
@@ -11,7 +11,7 @@
   "files": [
     "dist/",
     "snap.manifest.json",
-    "src/assets/eos-logo.svg"
+    "src/assets/vaulta-logo.svg"
   ],
   "scripts": {
     "allow-scripts": "yarn workspace root allow-scripts",

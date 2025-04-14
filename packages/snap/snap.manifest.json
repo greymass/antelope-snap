@@ -1,18 +1,18 @@
 {
   "version": "1.1.0",
-  "description": "Use MetaMask with the EOS Network",
-  "proposedName": "EOS Wallet",
+  "description": "Use MetaMask with the Vaulta Network",
+  "proposedName": "Vaulta Wallet",
   "repository": {
     "type": "git",
     "url": "https://github.com/@greymass/antelope-snap.git"
   },
   "source": {
-    "shasum": "05RXQ66dkZzU6uIeHBWC8PwII1X8voKdZuCDXfrrCew=",
+    "shasum": "PhF4WjS0sogAGSgrgxMs344BzwglqkcWg3/leVgydH4=",
     "location": {
       "npm": {
         "filePath": "dist/bundle.js",
-        "iconPath": "src/assets/eos-logo.svg",
-        "packageName": "@greymass/eos-wallet",
+        "iconPath": "src/assets/vaulta-logo.svg",
+        "packageName": "@greymass/vaulta-wallet",
         "registry": "https://registry.npmjs.org/"
       }
     }

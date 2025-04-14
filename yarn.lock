@@ -1729,21 +1729,30 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@greymass/create-account@npm:^1.0.2":
-  version: 1.0.2
-  resolution: "@greymass/create-account@npm:1.0.2"
+"@greymass/create-account@npm:^1.1.0":
+  version: 1.1.0
+  resolution: "@greymass/create-account@npm:1.1.0"
   dependencies:
     "@greymass/return-path": ^0.0.1
-    "@wharfkit/antelope": ^0.7.3
-    "@wharfkit/signing-request": ^3.0.0
+    "@wharfkit/antelope": ^1.0.13
+    "@wharfkit/signing-request": ^3.2.0
     tslib: ^2.1.0
-  checksum: aad3d0feb158f77bc386dab689c167dfd3ae73259734a6affd8b826aab2c26680f6067c89bee3d3f5ea763ed48998980b41d49ddf8f1e6cf92f146c92df5e32f
+  checksum: ee2547b8cfd5e36616feb413a6286b0e600fdd4229abd9cff9c838a097c17b505f27ba4fccd30566ef6124f2f85e6496433a4db9ba15930030642c15394bcb4d
   languageName: node
   linkType: hard
 
-"@greymass/eos-wallet@workspace:packages/snap":
+"@greymass/return-path@npm:^0.0.1":
+  version: 0.0.1
+  resolution: "@greymass/return-path@npm:0.0.1"
+  dependencies:
+    tslib: ^2.1.0
+  checksum: 0f2b0d14e433aa46c0a575315bb4e2add9c75c5befd6eeccce83682bbbc2bb6a14b0011e1083e1fb7879230720504a03cc022630e208f6a1abb80ab13a4e38eb
+  languageName: node
+  linkType: hard
+
+"@greymass/vaulta-wallet@workspace:packages/snap":
   version: 0.0.0-use.local
-  resolution: "@greymass/eos-wallet@workspace:packages/snap"
+  resolution: "@greymass/vaulta-wallet@workspace:packages/snap"
   dependencies:
     "@jest/globals": ^29.5.0
     "@metamask/auto-changelog": ^3.4.4
@@ -1776,15 +1785,6 @@ __metadata:
     typescript: ^4.7.4
   languageName: unknown
   linkType: soft
-
-"@greymass/return-path@npm:^0.0.1":
-  version: 0.0.1
-  resolution: "@greymass/return-path@npm:0.0.1"
-  dependencies:
-    tslib: ^2.1.0
-  checksum: 0f2b0d14e433aa46c0a575315bb4e2add9c75c5befd6eeccce83682bbbc2bb6a14b0011e1083e1fb7879230720504a03cc022630e208f6a1abb80ab13a4e38eb
-  languageName: node
-  linkType: hard
 
 "@humanwhocodes/config-array@npm:^0.11.14":
   version: 0.11.14
@@ -4127,7 +4127,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@wharfkit/abicache@npm:^1.2.0, @wharfkit/abicache@npm:^1.2.1":
+"@wharfkit/abicache@npm:^1.2.1":
   version: 1.2.2
   resolution: "@wharfkit/abicache@npm:1.2.2"
   dependencies:
@@ -4139,47 +4139,34 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@wharfkit/account-creation-plugin-metamask@npm:next":
-  version: 1.0.0-RC3
-  resolution: "@wharfkit/account-creation-plugin-metamask@npm:1.0.0-RC3"
+"@wharfkit/account-creation-plugin-metamask@npm:^1.2.1":
+  version: 1.2.1
+  resolution: "@wharfkit/account-creation-plugin-metamask@npm:1.2.1"
   dependencies:
-    "@greymass/create-account": ^1.0.2
+    "@greymass/create-account": ^1.1.0
     "@metamask/providers": ^17.0.0
     tslib: ^2.1.0
   peerDependencies:
-    "@wharfkit/session": ^1.2.7
-  checksum: 948d20a0b4843db276be25916ea7807153ce1439eb2513e049b90da25c519285ecd54b1f0dbd70581d7b175868d91e56c6624e464b8f915c37137de01df95e7c
+    "@wharfkit/session": ^1.4.0
+  checksum: 664b42cde27ae91c4e9e6fe9f2adc84bc2ef64575c286b5110a2867527c58d590ae2bea0f867f92b349047d93efead0e17fa1db009d13614d068cbd45fdfe86b
   languageName: node
   linkType: hard
 
-"@wharfkit/account@npm:^1.0.0":
-  version: 1.1.1
-  resolution: "@wharfkit/account@npm:1.1.1"
-  dependencies:
-    "@wharfkit/antelope": ^1.0.7
-    "@wharfkit/common": ^1.2.0
-    "@wharfkit/contract": ^1.0.0
-    "@wharfkit/resources": ^1.2.3
-    "@wharfkit/token": ^1.1.2
-    tslib: ^2.1.0
-  checksum: 18e2201dd57eb84368359034055eaddf6acd3dc63fdbb20cfb315db78ec7eb2847a945700bfc0da7fbb2c3b728ee889213e70adcb0792630df0a60d1dacbd93e
-  languageName: node
-  linkType: hard
-
-"@wharfkit/antelope@npm:^0.7.3":
-  version: 0.7.3
-  resolution: "@wharfkit/antelope@npm:0.7.3"
+"@wharfkit/antelope@npm:^1.0.11, @wharfkit/antelope@npm:^1.0.13":
+  version: 1.0.13
+  resolution: "@wharfkit/antelope@npm:1.0.13"
   dependencies:
     bn.js: ^4.11.9
     brorand: ^1.1.0
     elliptic: ^6.5.4
     hash.js: ^1.0.0
+    pako: ^2.1.0
     tslib: ^2.0.3
-  checksum: f8c1c27e1263f0312f37d62a689026fde61aacb5cf2b7e7519614e67d6102b4775495eb2fe7d1556beea09a052cd2859d64a0b0e9779775faf853d8be8df6822
+  checksum: 99c0e280de3ee6fa5cd56f86d857f43aeda16608862e535d38ca6c760408188d8750bc2fc9ca5b31ad1be0186d488701a5882c807c2537473e614a52c6538b6f
   languageName: node
   linkType: hard
 
-"@wharfkit/antelope@npm:^1.0.0, @wharfkit/antelope@npm:^1.0.2, @wharfkit/antelope@npm:^1.0.4, @wharfkit/antelope@npm:^1.0.7":
+"@wharfkit/antelope@npm:^1.0.2, @wharfkit/antelope@npm:^1.0.7":
   version: 1.0.8
   resolution: "@wharfkit/antelope@npm:1.0.8"
   dependencies:
@@ -4204,64 +4191,27 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@wharfkit/contract@npm:^1.0.0, @wharfkit/contract@npm:^1.1.4":
-  version: 1.1.5
-  resolution: "@wharfkit/contract@npm:1.1.5"
-  dependencies:
-    "@wharfkit/abicache": ^1.2.0
-    "@wharfkit/antelope": ^1.0.4
-    "@wharfkit/signing-request": ^3.1.0
-    tslib: ^2.1.0
-  checksum: 6bf5ed736fb5a340f0731db4a8f04b754e5c749f0894b3a834142540385e667e777e5c7b29df74136e4b2979397cac13bb0b5b9103d5f7e313f306b55f39f4b6
-  languageName: node
-  linkType: hard
-
-"@wharfkit/resources@npm:^1.2.3":
-  version: 1.2.3
-  resolution: "@wharfkit/resources@npm:1.2.3"
-  dependencies:
-    "@wharfkit/antelope": ^1.0.0
-    bn.js: ^4.11.9
-    js-big-decimal: ^2.0.7
-    tslib: ^2.1.0
-  checksum: 220febc3e142e2945604a3cafa8381eadc6cd662e4353e4e8128cfc731b2c8b51fad99e8110b0a6ead8c8b7e7b7f6ecfb1d1cdf28e7cf1e2ef427c60e3a80d53
-  languageName: node
-  linkType: hard
-
-"@wharfkit/session@npm:next":
-  version: 1.4.0-rc3
-  resolution: "@wharfkit/session@npm:1.4.0-rc3"
+"@wharfkit/session@npm:^1.5.1":
+  version: 1.5.1
+  resolution: "@wharfkit/session@npm:1.5.1"
   dependencies:
     "@wharfkit/abicache": ^1.2.1
-    "@wharfkit/account": ^1.0.0
-    "@wharfkit/antelope": ^1.0.2
+    "@wharfkit/antelope": ^1.0.11
     "@wharfkit/common": ^1.2.0
     "@wharfkit/signing-request": ^3.1.0
     pako: ^2.0.4
     tslib: ^2.1.0
-  checksum: b7372ea56a13f07d03bdc8707108227c52aa67e7548d62bc0cf9eb01b4510cac7d9ecca1b0c188956b0efd5dc6e3d5b5641c9a99d63b08d743bd8bf32fca309d
+  checksum: dcdf5c7ad5fc8df1af0f9bca785130c0088fd7f8b3411f7e880a909e132a1673e4f385a2a7e166c21fdcb704399ee23b2f5e9fc5d6cde2ff95dc5399a68ede68
   languageName: node
   linkType: hard
 
-"@wharfkit/signing-request@npm:^3.0.0, @wharfkit/signing-request@npm:^3.1.0":
+"@wharfkit/signing-request@npm:^3.1.0, @wharfkit/signing-request@npm:^3.2.0":
   version: 3.2.0
   resolution: "@wharfkit/signing-request@npm:3.2.0"
   dependencies:
     "@wharfkit/antelope": ^1.0.7
     tslib: ^2.0.3
   checksum: 68587fb58f0dd84866a6e407a2375bddc9d4809a7ca2cd49c3df4a15843b85bed018d2af8f34ce5a7ae7226443ac438d07992d39ba2eea2edaa3f366bf04f8e3
-  languageName: node
-  linkType: hard
-
-"@wharfkit/token@npm:^1.1.2":
-  version: 1.1.2
-  resolution: "@wharfkit/token@npm:1.1.2"
-  dependencies:
-    "@wharfkit/antelope": ^1.0.4
-    "@wharfkit/contract": ^1.1.4
-    bn.js: ^4.11.9
-    tslib: ^2.1.0
-  checksum: 149ea35d6c25ecc92aa570912e38311c4475a4869abe8ab63d2cd64bb2d89288a377963cc1da8308be6158dc626822c83f66e7ca7a7073274c7e5e5dfe7ba8c8
   languageName: node
   linkType: hard
 
@@ -4276,24 +4226,24 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@wharfkit/wallet-plugin-metamask@npm:next":
-  version: 1.0.0-rc3
-  resolution: "@wharfkit/wallet-plugin-metamask@npm:1.0.0-rc3"
+"@wharfkit/wallet-plugin-metamask@npm:^1.1.1":
+  version: 1.1.1
+  resolution: "@wharfkit/wallet-plugin-metamask@npm:1.1.1"
   dependencies:
     "@metamask/providers": ^17.0.0
     tslib: ^2.1.0
   peerDependencies:
-    "@wharfkit/session": ^1.1.0
-  checksum: 21196847c16d05e469a01a3e2cd8951a6c2da749d269c70676a11dd5b1ce10aa108f8672fa18769193e8b05b3f85ffc33fd864430d8c52fb4df439c4afbcd47c
+    "@wharfkit/session": ^1.4.0
+  checksum: 277f895b558b629a340c4ff48cebcf7b23658810401c4d6bca5fe5b5532f55385bb8c331cf1cb125501dfc692ee38e71542cf9f56414812d0948788a56d254c3
   languageName: node
   linkType: hard
 
-"@wharfkit/web-renderer@npm:next":
-  version: 1.4.0-rc6
-  resolution: "@wharfkit/web-renderer@npm:1.4.0-rc6"
+"@wharfkit/web-renderer@npm:^1.4.1":
+  version: 1.4.1
+  resolution: "@wharfkit/web-renderer@npm:1.4.1"
   peerDependencies:
-    "@wharfkit/session": ^1.0.1
-  checksum: 6229efca80a5eaca0523e21c4ac8221876d679cf11541741d4276ca5f4c3db4a07feaa9f4c0b230018ce94e70dc1a21cbdb39a2f327a62b532b5e5c5d42cbf85
+    "@wharfkit/session": ^1.4.0
+  checksum: 2e1a7f747e13b0c1f11785b81c24dd5285b63bcf3b5a01c9b685cfef42a82b1dc385af3d77c259369560cb2d47deb75eeb67862494748ee05f3e2fc1b866f94c
   languageName: node
   linkType: hard
 
@@ -8922,13 +8872,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"js-big-decimal@npm:^2.0.7":
-  version: 2.0.7
-  resolution: "js-big-decimal@npm:2.0.7"
-  checksum: ab3111b01ce5d59112782e2f087229d0a88d5a3a66f3b8fcb8dac2803bb8b57a8ac1aab6aa252f0aa3e8301e065ec1f5f2835ac523cd3b0e74d95023e785f723
-  languageName: node
-  linkType: hard
-
 "js-sha3@npm:^0.5.7":
   version: 0.5.7
   resolution: "js-sha3@npm:0.5.7"
@@ -11381,11 +11324,11 @@ __metadata:
     "@sveltejs/kit": ^2.0.0
     "@sveltejs/vite-plugin-svelte": ^3.0.0
     "@types/eslint": ^8.56.7
-    "@wharfkit/account-creation-plugin-metamask": next
-    "@wharfkit/session": next
+    "@wharfkit/account-creation-plugin-metamask": ^1.2.1
+    "@wharfkit/session": ^1.5.1
     "@wharfkit/transact-plugin-resource-provider": ^1.1.1
-    "@wharfkit/wallet-plugin-metamask": next
-    "@wharfkit/web-renderer": next
+    "@wharfkit/wallet-plugin-metamask": ^1.1.1
+    "@wharfkit/web-renderer": ^1.4.1
     eslint: ^9.0.0
     eslint-config-prettier: ^9.1.0
     eslint-plugin-svelte: ^2.36.0
