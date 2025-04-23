@@ -1750,9 +1750,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@greymass/vaulta-wallet@workspace:packages/snap":
+"vaulta-wallet@workspace:packages/snap":
   version: 0.0.0-use.local
-  resolution: "@greymass/vaulta-wallet@workspace:packages/snap"
+  resolution: "vaulta-wallet@workspace:packages/snap"
   dependencies:
     "@jest/globals": ^29.5.0
     "@metamask/auto-changelog": ^3.4.4

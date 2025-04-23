@@ -1,10 +1,10 @@
 {
-  "name": "@greymass/vaulta-wallet",
-  "version": "1.1.0",
+  "name": "vaulta-wallet",
+  "version": "1.1.1",
   "description": "Use MetaMask with the Vaulta Network",
   "repository": {
     "type": "git",
-    "url": "https://github.com/@greymass/antelope-snap.git"
+    "url": "https://github.com/greymass/antelope-snap.git"
   },
   "license": "MIT",
   "main": "./dist/bundle.js",

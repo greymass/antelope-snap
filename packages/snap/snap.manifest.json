@@ -1,18 +1,18 @@
 {
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Use MetaMask with the Vaulta Network",
   "proposedName": "Vaulta Wallet",
   "repository": {
     "type": "git",
-    "url": "https://github.com/@greymass/antelope-snap.git"
+    "url": "https://github.com/greymass/antelope-snap.git"
   },
   "source": {
-    "shasum": "PhF4WjS0sogAGSgrgxMs344BzwglqkcWg3/leVgydH4=",
+    "shasum": "bbqcKS92PhHJ1PwE+e1IP/JL8SQT1ZwVLOFNdzs7G80=",
     "location": {
       "npm": {
         "filePath": "dist/bundle.js",
         "iconPath": "src/assets/vaulta-logo.svg",
-        "packageName": "@greymass/vaulta-wallet",
+        "packageName": "vaulta-wallet",
         "registry": "https://registry.npmjs.org/"
       }
     }
